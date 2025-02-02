@@ -1,0 +1,27 @@
+.no-students-message {
+    color: #718096;
+    text-align: center;
+    padding: 1rem;
+    background-color: #f7fafc;
+    border-radius: 0.375rem;
+    margin: 1rem 0;
+}
+
+.add-button {
+    background-color: #48bb78;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+.add-button:disabled {
+    background-color: #cbd5e0;
+    cursor: not-allowed;
+}
+
+.add-button:hover:not(:disabled) {
+    background-color: #38a169;
+} 
