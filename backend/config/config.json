@@ -1,24 +1,24 @@
 {
-    "development": {
-      "username": "root",
-      "password": "sagargiri1",
-      "database": "thesis_management",
-      "host": "127.0.0.1",
-      "dialect": "mysql",
-      "logging": true
-    },
-    "test": {
-      "username": "root",
-      "password": "sagargiri1",
-      "database": "thesis_management_test",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
-    },
-    "production": {
-      "username": "root",
-      "password": "sagargiri1",
-      "database": "thesis_management_prod",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
-    }
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "thesis_management",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "logging": true
+  },
+  "test": {
+    "username": "root",
+    "password": "sagargiri1",
+    "database": "thesis_management_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "sagargiri1",
+    "database": "thesis_management_prod",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   }
+}
