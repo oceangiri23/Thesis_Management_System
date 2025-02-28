@@ -1,24 +1,31 @@
-import { Fragment } from 'react';
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { useAuth } from '../context/AuthContext';
+import { Fragment } from "react";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useAuth } from "../context/AuthContext";
 
-const navigation = [
-  { name: 'Dashboard', href: '/' },
-  { name: 'Students', href: '/students' },
-  { name: 'Groups', href: '/groups' },
-  { name: 'Supervisors', href: '/supervisors' },
-];
+const getNavigation = (role) => {
+  const commonItems = [{ name: "Dashboard", href: "/" }];
+
+  if (role === "supervisor") {
+    return [
+      ...commonItems,
+      { name: "Supervisor Dashboard", href: "/supervisor-dashboard" },
+    ];
+  }
+
+  return [...commonItems, { name: "Groups", href: "/groups" }];
+};
 
 export default function Layout() {
   const { user, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const navigation = getNavigation(user?.role);
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -41,8 +48,8 @@ export default function Layout() {
                         to={item.href}
                         className={`${
                           location.pathname === item.href
-                            ? 'border-primary-500 text-gray-900'
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            ? "border-primary-500 text-gray-900"
+                            : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                         } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                       >
                         {item.name}
@@ -75,7 +82,7 @@ export default function Layout() {
                             <button
                               onClick={handleLogout}
                               className={`${
-                                active ? 'bg-gray-100' : ''
+                                active ? "bg-gray-100" : ""
                               } block px-4 py-2 text-sm text-gray-700 w-full text-left`}
                             >
                               Sign out
@@ -99,4 +106,4 @@ export default function Layout() {
       </div>
     </div>
   );
-} 
+}

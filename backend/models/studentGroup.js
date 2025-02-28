@@ -1,54 +1,62 @@
 module.exports = (sequelize, DataTypes) => {
-  const StudentGroup = sequelize.define('StudentGroup', {
+  const StudentGroup = sequelize.define("StudentGroup", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     team_name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     thesis_name: DataTypes.STRING,
     description: DataTypes.TEXT,
     department: DataTypes.STRING,
     semester: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     project_status: {
-      type: DataTypes.ENUM('pending', 'active', 'completed'),
-      defaultValue: 'pending'
+      type: DataTypes.ENUM("pending", "active", "completed"),
+      defaultValue: "pending",
     },
     number_of_member: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
       validate: {
-        max: 4
-      }
+        max: 4,
+      },
     },
     approval_status: {
-      type: DataTypes.ENUM('pending', 'approved', 'rejected'),
-      defaultValue: 'pending'
+      type: DataTypes.ENUM("pending", "approved", "rejected"),
+      defaultValue: "pending",
     },
     rejection_reason: {
       type: DataTypes.TEXT,
-      allowNull: true
-    }
+      allowNull: true,
+    },
+    thesisDeadline: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   });
 
-  StudentGroup.associate = function(models) {
+  StudentGroup.associate = function (models) {
     StudentGroup.belongsTo(models.Supervisor, {
-      foreignKey: 'SupervisorEmail',
-      targetKey: 'email'
+      foreignKey: "SupervisorEmail",
+      targetKey: "email",
     });
     StudentGroup.hasMany(models.Student, {
-      foreignKey: 'StudentGroupId'
+      foreignKey: "StudentGroupId",
     });
     StudentGroup.hasMany(models.JoinRequest, {
-      foreignKey: 'GroupId'
+      foreignKey: "GroupId",
+    });
+    StudentGroup.hasMany(models.ThesisSubmission, {
+      foreignKey: "groupId",
+      as: "ThesisSubmissions",
     });
   };
 
   return StudentGroup;
-}; 
+};
