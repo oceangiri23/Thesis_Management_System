@@ -31,11 +31,11 @@ db.sequelize
 // Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/students", require("./routes/students"));
-// app.use('/api/supervisors', require('./routes/supervisor'));
 app.use("/api/groups", require("./routes/groups"));
 app.use("/api/supervisors", require("./routes/supervisors"));
 app.use("/api/proposals", require("./routes/proposals"));
 app.use("/api/thesis", require("./routes/thesis"));
 app.use("/file", express.static(path.join(__dirname, "uploads/thesis")));
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
